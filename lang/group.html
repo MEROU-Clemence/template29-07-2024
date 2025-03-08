@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="{{CurrentLang.IsoLang}}" culture="{{CurrentLang.CultureLang}}">
+<head>
+    <title>{{CurrentGroupePrestation.TitreGroupe}} - {{CustomTitle}} - {{City}} - {{Country}}</title>
+    <meta name="description" content="{{CustomTitle}} - {{CurrentGroupePrestation.TitreGroupe}}">
+    {{>CommonMetaTags}}
+    <link rel="canonical" href="{{UrlOffers}}" />
+    <meta property="og:url" content="{{UrlOffers}}" />
+    <meta property="og:title" content="{{CurrentGroupePrestation.TitreGroupe}}" />
+    <meta property="og:image" content="{{#Photos.0}}{{UrlMedias}}/crop-300x200/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}" />
+    <meta property="og:description" content="{{CustomTitle}} - {{CurrentGroupePrestation.TitreGroupe}}" />
+    {{>FaviconTags}}
+    {{>CommonStylesheets}}
+</head>
+
+<body>
+    {{{ScriptAnalytics}}}
+    {{{GoogleTagManagerBody}}}
+    {{>Header}}
+    <main>
+        <!-- SECTION BANNER -->
+        <section class="section">
+            <div class="content-section-2 section-title-BG bg-img" style="background-image: url({{#CurrentGroupePrestation.PhotoGroupe}}{{UrlMedias}}/crop-1600x400/{{IdMedia}}/{{FileNamePhoto}}{{/CurrentGroupePrestation.PhotoGroupe}}{{^CurrentGroupePrestation.PhotoGroupe}}{{#Photos.0}}{{UrlMedias}}/crop-1600x400/{{IdMedia}}/{{FileNamePhoto}}{{/Photos.0}}{{/CurrentGroupePrestation.PhotoGroupe}})" alt="{{NamePhoto}}">
+                <div class="opacity-3">
+                    <div class="text-center">
+                        <h1 class="big-title">{{CurrentGroupePrestation.TitreGroupe}}</h1>
+                        <div class="banner-link-contain">
+                            <a class="banner-link link-accueil" href="{{UrlRoot}}">{{ResourcesTemplate.Home}}</a>
+                            <i class='las la-angle-right'></i>
+                            <span class="banner-link">{{CurrentGroupePrestation.TitreGroupe}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION OFFRES -->
+        <section class="section section-offers-in-offers">
+            <div class="content-section">
+                <div class="presta-big-contain">
+                    {{#CurrentGroupePrestation.PrestasGroupe}}
+                    <div class="presta-contain presta-contain-one is-active">
+                        <img class="bg-img" src="{{#PhotosPresta.0}}{{UrlMedias}}/crop-450x350/{{IdMedia}}/{{FileNamePhoto}}{{/PhotosPresta.0}}" alt="{{NamePhoto}}" itemprop="image">
+                        <div class="capacity-and-infos">
+                            <div class="infos">
+                                <div class="title-and-price">
+                                    <h3><a href="{{UrlPrestaTemplate}}">{{TitrePrestaLength30}}</a></h3>
+
+                                    {{#DescriptionPrestaMini}}
+                                    <div class="txt m-b-15 descrip-offers">{{DescriptionPrestaLength150}}</div>
+                                    {{/DescriptionPrestaMini}}
+
+                                    <div class="saw-prices">
+                                        {{#MinPricePresta}}
+                                        <span>{{ResourcesTemplate.PriceFrom}}</span>
+                                        <span><strong>{{MinPricePresta}}{{CurrencySymbol}}{{^isActivity}} /{{ResourcesTemplate.Night}}{{/isActivity}}</strong></span>
+                                        {{/MinPricePresta}}
+                                    </div>
+                                </div>
+
+                                <a href="{{UrlPrestaTemplate}}" class="btn btn-default" itemprop="url">{{ResourcesTemplate.SeeDetail}}</a>
+                            </div>
+
+                            <div class="capacity-and-others">
+                                {{#isActivity}}
+                                {{#DurationPresta}}
+                                <div class="grey-txt ok-480">{{ResourcesTemplate.Duration}} {{DurationResume}}</div>
+                                {{/DurationPresta}}
+                                {{#AgeMinimum}}
+                                <div class="grey-txt">
+                                    {{#AgeMaximum}}{{ResourcesTemplate.AgeFrom}} {{/AgeMaximum}}
+                                    {{^AgeMaximum}}{{ResourcesTemplate.AgeStartingFrom}} {{/AgeMaximum}}
+                                    {{AgeMinimum}} {{#AgeMaximum}}{{ResourcesTemplate.AgeTo}} {{AgeMaximum}} {{/AgeMaximum}}{{ResourcesTemplate.AgeYears}}
+                                </div>
+                                {{/AgeMinimum}}
+                                {{#Difficulty}}
+                                <div class="grey-txt">{{ResourcesTemplate.Difficulty}} {{Difficulty}} / 5</div>
+                                {{/Difficulty}}
+                                {{#IsAdultRequired}}
+                                <div class="grey-txt">{{ResourcesTemplate.AdultAccompaniment}} : {{{ResourcesTemplate.Required}}}</div>
+                                {{/IsAdultRequired}}
+                                {{/isActivity}}
+
+                                {{#isActivity}}
+                                {{#DurationPresta}}
+                                <div>
+                                    <i class="las la-clock"></i>
+                                    <span>
+                                        {{DurationResume}}
+                                    </span>
+                                </div>
+                                {{/DurationPresta}}
+                                {{/isActivity}}
+                            </div>
+                        </div>
+                    </div>
+                    {{/CurrentGroupePrestation.PrestasGroupe}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {{>Footer}}
+    {{>CommonScripts}}
+    
+</body>
+
+</html>
